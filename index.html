@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDA</title>
+    <link href="https://www.google.com/maps/dir//%C5%BBwirki+i+Wigury+18,+02-092+Warszawa/@52.1904246,20.8994624,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x47193336fb016d19:0xc20727b6845ccd34!2m2!1d20.9818626!2d52.1904533?entry=ttu&g_ep=EgoyMDI1MDMxMS4wIKXMDSoASAFQAw%3D%3D" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #f9ecef, #f5d9e0); /* Subtle pink gradient */
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Circle decorations */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(164, 27, 91, 0.2);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(245, 217, 224, 0.3);
+            border-radius: 50%;
+            bottom: 15%;
+            right: 15%;
+            z-index: 0;
+        }
+        .circle-1 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(164, 27, 91, 0.15);
+            border-radius: 50%;
+            top: 20%;
+            right: 20%;
+            z-index: 0;
+        }
+        .circle-2 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(245, 217, 224, 0.25);
+            border-radius: 50%;
+            bottom: 30%;
+            left: 15%;
+            z-index: 0;
+        }
+        .circle-3 {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(164, 27, 91, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 5%;
+            z-index: 0;
+        }
+        .spiral-1 {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(164, 27, 91, 0.2) 10%, transparent 20%, rgba(164, 27, 91, 0.2) 30%, transparent 40%, rgba(164, 27, 91, 0.2) 50%, transparent 60%);
+            border-radius: 50%;
+            top: 30%;
+            right: 5%;
+            z-index: 0;
+            transform: rotate(45deg);
+        }
+        .spiral-2 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(245, 217, 224, 0.3) 10%, transparent 20%, rgba(245, 217, 224, 0.3) 30%, transparent 40%, rgba(245, 217, 224, 0.3) 50%, transparent 60%);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 25%;
+            z-index: 0;
+            transform: rotate(-30deg);
+        }
+        .circle-4 {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: rgba(164, 27, 91, 0.12);
+            border-radius: 50%;
+            top: 5%;
+            right: 30%;
+            z-index: 0;
+        }
+        .circle-5 {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: rgba(245, 217, 224, 0.18);
+            border-radius: 50%;
+            bottom: 20%;
+            left: 25%;
+            z-index: 0;
+        }
+        .circle-6 {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(164, 27, 91, 0.25);
+            border-radius: 50%;
+            top: 40%;
+            right: 10%;
+            z-index: 0;
+        }
+        .circle-7 {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: rgba(245, 217, 224, 0.15);
+            border-radius: 50%;
+            bottom: 5%;
+            right: 25%;
+            z-index: 0;
+        }
+        .circle-8 {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(164, 27, 91, 0.2);
+            border-radius: 50%;
+            top: 60%;
+            left: 20%;
+            z-index: 0;
+        }
+        .circle-9 {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: rgba(245, 217, 224, 0.22);
+            border-radius: 50%;
+            bottom: 40%;
+            right: 5%;
+            z-index: 0;
+        }
+        .circle-10 {
+            position: absolute;
+            width: 85px;
+            height: 85px;
+            background: rgba(164, 27, 91, 0.17);
+            border-radius: 50%;
+            top: 25%;
+            left: 30%;
+            z-index: 0;
+        }
+        .circle-11 {
+            position: absolute;
+            width: 95px;
+            height: 95px;
+            background: rgba(245, 217, 224, 0.2);
+            border-radius: 50%;
+            bottom: 50%;
+            left: 10%;
+            z-index: 0;
+        }
+        .circle-12 {
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            background: rgba(164, 27, 91, 0.13);
+            border-radius: 50%;
+            top: 70%;
+            right: 15%;
+            z-index: 0;
+        }
+        .circle-13 {
+            position: absolute;
+            width: 105px;
+            height: 105px;
+            background: rgba(245, 217, 224, 0.16);
+            border-radius: 50%;
+            bottom: 25%;
+            right: 35%;
+            z-index: 0;
+        }
+        .circle-14 {
+            position: absolute;
+            width: 115px;
+            height: 115px;
+            background: rgba(164, 27, 91, 0.19);
+            border-radius: 50%;
+            top: 15%;
+            left: 40%;
+            z-index: 0;
+        }
+        .circle-15 {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: rgba(245, 217, 224, 0.23);
+            border-radius: 50%;
+            bottom: 60%;
+            left: 30%;
+            z-index: 0;
+        }
+        .circle-16 {
+            position: absolute;
+            width: 125px;
+            height: 125px;
+            background: rgba(164, 27, 91, 0.14);
+            border-radius: 50%;
+            top: 45%;
+            right: 25%;
+            z-index: 0;
+        }
+        .circle-17 {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: rgba(245, 217, 224, 0.21);
+            border-radius: 50%;
+            bottom: 35%;
+            left: 5%;
+            z-index: 0;
+        }
+        .circle-18 {
+            position: absolute;
+            width: 135px;
+            height: 135px;
+            background: rgba(164, 27, 91, 0.11);
+            border-radius: 50%;
+            top: 55%;
+            left: 15%;
+            z-index: 0;
+        }
+        .circle-19 {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(245, 217, 224, 0.17);
+            border-radius: 50%;
+            bottom: 45%;
+            right: 10%;
+            z-index: 0;
+        }
+        .circle-20 {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: rgba(164, 27, 91, 0.16);
+            border-radius: 50%;
+            top: 30%;
+            right: 35%;
+            z-index: 0;
+        }
+        .spiral-3 {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(164, 27, 91, 0.18) 10%, transparent 20%, rgba(164, 27, 91, 0.18) 30%, transparent 40%, rgba(164, 27, 91, 0.18) 50%, transparent 60%);
+            border-radius: 50%;
+            top: 10%;
+            left: 20%;
+            z-index: 0;
+            transform: rotate(60deg);
+        }
+        .spiral-4 {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, rgba(245, 217, 224, 0.25) 10%, transparent 20%, rgba(245, 217, 224, 0.25) 30%, transparent 40%, rgba(245, 217, 224, 0.25) 50%, transparent 60%);
+            border-radius: 50%;
+            bottom: 20%;
+            right: 20%;
+            z-index: 0;
+            transform: rotate(-45deg);
+        }
+        .spiral-5 {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: radial-gradient(circle, rgba(164, 27, 91, 0.15) 10%, transparent 20%, rgba(164, 27, 91, 0.15) 30%, transparent 40%, rgba(164, 27, 91, 0.15) 50%, transparent 60%);
+            border-radius: 50%;
+            top: 65%;
+            left: 10%;
+            z-index: 0;
+            transform: rotate(30deg);
+        }
+        .spiral-6 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(245, 217, 224, 0.2) 10%, transparent 20%, rgba(245, 217, 224, 0.2) 30%, transparent 40%, rgba(245, 217, 224, 0.2) 50%, transparent 60%);
+            border-radius: 50%;
+            bottom: 30%;
+            right: 30%;
+            z-index: 0;
+            transform: rotate(-60deg);
+        }
+        .spiral-7 {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle, rgba(164, 27, 91, 0.13) 10%, transparent 20%, rgba(164, 27, 91, 0.13) 30%, transparent 40%, rgba(164, 27, 91, 0.13) 50%, transparent 60%);
+            border-radius: 50%;
+            top: 20%;
+            right: 40%;
+            z-index: 0;
+            transform: rotate(15deg);
+        }
+        .top-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        .top-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #a41b5b;
+        }
+        .top-header .location-btn {
+            background-color: #a41b5b;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .top-header .location-btn:hover {
+            background-color: #831645;
+        }
+        .agenda-container {
+            max-width: 900px;
+            width: 100%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h3 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #666;
+        }
+        .header .location-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #a41b5b;
+            margin-top: 10px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #f4c7d3;
+        }
+        .agenda-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fef7f9;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .agenda-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .agenda-item::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #a41b5b;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+        .tag {
+            display: inline-block;
+            background: #a41b5b;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+        .time {
+            font-size: 14px;
+            font-weight: 500;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .activity {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .leader {
+            font-size: 14px;
+            font-style: italic;
+            color: #666;
+            display: block; /* Speaker names visible by default */
+        }
+        /* Responsive Design */
+        @media (max-width: 600px) {
+    .top-header {
+        flex-direction: row; /* Keep items in a row */
+        justify-content: space-between; /* Align "AGENDA" left and "Location" right */
+        align-items: center; /* Vertically center both items */
+        padding: 15px;
+    }
+    .top-header h1 {
+        font-size: 18px; /* Reduced font size for mobile */
+    }
+    .top-header .location-btn {
+        padding: 10px 25px; /* Enlarged padding for the button */
+        font-size: 14px; /* Optional: Adjust font size of the button text */
+    }
+    .agenda-container {
+        padding: 20px;
+    }
+    .header h3 {
+        font-size: 16px;
+    }
+    .header .location-text {
+        font-size: 14px;
+    }
+    .timeline {
+        padding-left: 30px;
+    }
+    .timeline::before {
+        left: 15px;
+    }
+    .agenda-item::before {
+        left: -35px;
+    }
+    .agenda-item {
+        padding: 15px;
+    }
+    .activity {
+        font-size: 16px;
+    }
+    .leader {
+        font-size: 12px; /* Smaller font for mobile */
+    }
+    /* Adjust all circle and spiral sizes and positions for mobile */
+    body::before {
+        width: 120px;
+        height: 120px;
+        top: 5%;
+        left: 5%;
+    }
+    body::after {
+        width: 100px;
+        height: 100px;
+        bottom: 10%;
+        right: 5%;
+    }
+    .circle-1 { width: 60px; height: 60px; top: 15%; right: 10%; }
+    .circle-2 { width: 50px; height: 50px; bottom: 25%; left: 5%; }
+    .circle-3 { width: 80px; height: 80px; top: 40%; left: 2%; }
+    .circle-4 { width: 60px; height: 60px; top: 5%; right: 15%; }
+    .circle-5 { width: 70px; height: 70px; bottom: 15%; left: 15%; }
+    .circle-6 { width: 50px; height: 50px; top: 30%; right: 5%; }
+    .circle-7 { width: 80px; height: 80px; bottom: 5%; right: 15%; }
+    .circle-8 { width: 40px; height: 40px; top: 50%; left: 10%; }
+    .circle-9 { width: 90px; height: 90px; bottom: 30%; right: 2%; }
+    .circle-10 { width: 55px; height: 55px; top: 20%; left: 20%; }
+    .circle-11 { width: 65px; height: 65px; bottom: 40%; left: 5%; }
+    .circle-12 { width: 45px; height: 45px; top: 60%; right: 10%; }
+    .circle-13 { width: 70px; height: 70px; bottom: 20%; right: 20%; }
+    .circle-14 { width: 75px; height: 75px; top: 10%; left: 25%; }
+    .circle-15 { width: 50px; height: 50px; bottom: 50%; left: 15%; }
+    .circle-16 { width: 85px; height: 85px; top: 35%; right: 15%; }
+    .circle-17 { width: 40px; height: 40px; bottom: 25%; left: 2%; }
+    .circle-18 { width: 90px; height: 90px; top: 45%; left: 5%; }
+    .circle-19 { width: 60px; height: 60px; bottom: 35%; right: 5%; }
+    .circle-20 { width: 65px; height: 65px; top: 25%; right: 20%; }
+    .spiral-1 { width: 100px; height: 100px; top: 25%; right: 2%; }
+    .spiral-2 { width: 70px; height: 70px; bottom: 5%; left: 15%; }
+    .spiral-3 { width: 80px; height: 80px; top: 10%; left: 15%; }
+    .spiral-4 { width: 60px; height: 60px; bottom: 15%; right: 15%; }
+    .spiral-5 { width: 75px; height: 75px; top: 50%; left: 5%; }
+    .spiral-6 { width: 55px; height: 55px; bottom: 25%; right: 10%; }
+    .spiral-7 { width: 90px; height: 90px; top: 20%; right: 10%; }
+}
+/* Footer styles */
+.footer {
+    background-color: #222;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+}
+
+.footer-left p {
+    margin: 0;
+}
+
+.footer-center p {
+    margin: 0;
+}
+
+.footer-center a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.footer-center a:hover {
+    text-decoration: underline;
+}
+
+.footer-right ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-right li {
+    margin-left: 15px;
+}
+
+.footer-right a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.footer-right a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-right ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-right li {
+        margin: 5px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="top-header">
+        <h1>AGENDA</h1>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sound+Garden+Hotel,+Warsaw,+Poland" target="_blank" class="location-btn">Location</a>
+    </div>
+    <div class="agenda-container">
+        <div class="header">
+            <h3>Living a Life Worthy of Your Calling - Sunday, 16 March</h3>
+            <div class="location-text">Location: Sound Garden Hotel</div>
+        </div>
+        <div class="timeline">
+            <div class="agenda-item">
+                <div class="tag">MEALS AND NETWORKING</div>
+                <div class="time">14:20 - 14:30</div>
+                <div class="activity">Refreshments</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">PRAYER</div>
+                <div class="time">14:30 - 14:35</div>
+                <div class="activity">Opening Prayer</div>
+                <div class="leader">Speaker: Precious Aise</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">ICE BREAKER</div>
+                <div class="time">14:35 - 14:45</div>
+                <div class="activity">Ice Breaker</div>
+                <div class="leader">Speaker: Devaughn</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">WELCOME</div>
+                <div class="time">14:45 - 14:50</div>
+                <div class="activity">Opening and Welcome Remarks</div>
+                <div class="leader">Speaker: Deaconess Dephine</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">DISCUSSION</div>
+                <div class="time">14:50 - 15:00</div>
+                <div class="activity">Interactive Discussions</div>
+                <div class="leader">Speaker: Tanya</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">Q&A</div>
+                <div class="time">15:00 - 15:40</div>
+                <div class="activity">Q&A Session</div>
+                <div class="leader">Speaker: Michelle</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">PRESENTATION</div>
+                <div class="time">15:40 - 15:45</div>
+                <div class="activity">Presentation</div>
+                <div class="leader">Speaker: Deaconess Dephine</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">CLOSING</div>
+                <div class="time">15:45 - 15:50</div>
+                <div class="activity">Vote of Thanks</div>
+                <div class="leader">Speaker: Giegie</div>
+            </div>
+            <div class="agenda-item">
+                <div class="tag">PRAYER & WRAP-UP</div>
+                <div class="time">15:50 - 16:00</div>
+                <div class="activity">Closing Prayer & Wrap-Up</div>
+                <div class="leader">Speaker: Ruva</div>
+            </div>
+        </div>
+    </div>
+    <!-- All circles and spirals -->
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+    <div class="circle-3"></div>
+    <div class="circle-4"></div>
+    <div class="circle-5"></div>
+    <div class="circle-6"></div>
+    <div class="circle-7"></div>
+    <div class="circle-8"></div>
+    <div class="circle-9"></div>
+    <div class="circle-10"></div>
+    <div class="circle-11"></div>
+    <div class="circle-12"></div>
+    <div class="circle-13"></div>
+    <div class="circle-14"></div>
+    <div class="circle-15"></div>
+    <div class="circle-16"></div>
+    <div class="circle-17"></div>
+    <div class="circle-18"></div>
+    <div class="circle-19"></div>
+    <div class="circle-20"></div>
+    <div class="spiral-1"></div>
+    <div class="spiral-2"></div>
+    <div class="spiral-3"></div>
+    <div class="spiral-4"></div>
+    <div class="spiral-5"></div>
+    <div class="spiral-6"></div>
+    <div class="spiral-7"></div>
+</body>
+
+
+
+</html>
